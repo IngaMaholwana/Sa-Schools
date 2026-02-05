@@ -1,0 +1,46 @@
+# South African Schools Map - Requirements
+# ==========================================
+
+# Core Framework
+react >= 18.3.0
+react-dom >= 18.3.0
+typescript >= 5.0.0
+
+# Build Tools
+vite >= 5.0.0
+
+# Mapping
+maplibre-gl >= 5.15.0
+
+# UI Components
+@radix-ui/react-scroll-area >= 1.2.0
+@radix-ui/react-popover >= 1.1.0
+@radix-ui/react-dialog >= 1.1.0
+@radix-ui/react-slot >= 1.2.0
+
+# Styling
+tailwindcss >= 3.4.0
+tailwindcss-animate >= 1.0.0
+tailwind-merge >= 2.6.0
+class-variance-authority >= 0.7.0
+
+# Utilities
+clsx >= 2.1.0
+lucide-react >= 0.462.0
+
+# State Management & Data Fetching
+@tanstack/react-query >= 5.83.0
+
+# Routing
+react-router-dom >= 6.30.0
+
+# Forms (optional)
+react-hook-form >= 7.61.0
+@hookform/resolvers >= 3.10.0
+zod >= 3.25.0
+
+# Date Utilities
+date-fns >= 3.6.0
+
+# Notifications
+sonner >= 1.7.0
