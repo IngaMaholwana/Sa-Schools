@@ -1,68 +1,35 @@
-# React + TypeScript + Vite Mingas
+ # SA Schools Map
 
+ ## South African Schools
 
-## React Compiler
+ The information as collected by the South African Education Department for the learner population of South Africa in all measured education systems: public, private, and independent.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+ ## About
 
-## Expanding the ESLint configuration
+ SA Schools Map is an interactive web application that visualizes schools across South Africa using geospatial data. It allows users to explore, search, and view detailed information about each school directly on a map.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+ Built for South Africans to know and understand schools for their children.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+ ## Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+ - **25,500+ Schools** - Comprehensive coverage of all provinces
+ - **Interactive Map** - Explore schools geographically with clustering
+ - **Search & Filter** - Find schools by name, town, or province
+ - **Location-Based** - Sort by distance from your current location
+ - **Detailed Info** - View learner counts, educator numbers, quintile, and more
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+ ## Data
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+ The dataset includes:
+ - **~25,500 schools** across all 9 provinces + Special Needs institutions
+ - **~13.7 million learners**
+ - **~485,000 educators**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+ ## Technology
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-# Sa-Schools
+- Vite
+- TypeScript
+- React
+ - MapLibre GL
+ - shadcn/ui
+- Tailwind CSS

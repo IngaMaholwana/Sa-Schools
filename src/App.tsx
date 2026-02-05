@@ -1,20 +1,13 @@
+import { useState } from 'react'
 import { Map } from "@/components/ui/map";
 
-export function BasicMapExample() {
+function BasicMapExample() {
   return (
     <div className="h-[400px] w-full">
-      <Map center={[-26.2041, 28.0473]} zoom={6} />
+      <Map center={[-74.006, 40.7128]} zoom={12} />
     </div>
   );
 }
 
-function App() {
-  return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">South African Schools Map</h1>
-      <BasicMapExample />
-    </div>
-  );
-}
-
-export default App;
+  
+export default BasicMapExample

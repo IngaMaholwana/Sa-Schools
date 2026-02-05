@@ -170,8 +170,24 @@ const Map = forwardRef<MapRef, MapProps>(function Map(
       attributionControl: {
         compact: true,
       },
+      preserveDrawingBuffer: true,
       ...props,
     });
+
+    const contextLostHandler = () => {
+      console.log('WebGL context lost, attempting to restore...');
+      // Attempt to restore by reloading the map
+      setTimeout(() => {
+        map.resize();
+      }, 100);
+    };
+
+    const contextRestoredHandler = () => {
+      console.log('WebGL context restored');
+    };
+
+    map.on('webglcontextlost', contextLostHandler);
+    map.on('webglcontextrestored', contextRestoredHandler);
 
     const styleDataHandler = () => {
       clearStyleTimeout();
@@ -189,12 +205,16 @@ const Map = forwardRef<MapRef, MapProps>(function Map(
 
     map.on("load", loadHandler);
     map.on("styledata", styleDataHandler);
+    map.on('webglcontextlost', contextLostHandler);
+    map.on('webglcontextrestored', contextRestoredHandler);
     setMapInstance(map);
 
     return () => {
       clearStyleTimeout();
       map.off("load", loadHandler);
       map.off("styledata", styleDataHandler);
+      map.off('webglcontextlost', contextLostHandler);
+      map.off('webglcontextrestored', contextRestoredHandler);
       map.remove();
       setIsLoaded(false);
       setIsStyleLoaded(false);
