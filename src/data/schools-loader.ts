@@ -40,12 +40,10 @@ const PROVINCE_FILES: ProvinceConfig[] = [
   { file: 'Special_Needs.json', province: 'Special Needs' },
 ];
 
-/**
- * Load a single province's school data
- */
 async function loadProvinceData(config: ProvinceConfig): Promise<{ schools: School[]; rawCount: number }> {
   try {
-    const response = await fetch(`/data/${config.file}`);
+    const base = import.meta.env.BASE_URL || '/';
+    const response = await fetch(`${base}data/${config.file}`);
     if (!response.ok) {
       console.warn(`Failed to load ${config.file}: ${response.status}`);
       return { schools: [], rawCount: 0 };
@@ -61,7 +59,6 @@ async function loadProvinceData(config: ProvinceConfig): Promise<{ schools: Scho
     const schools = parseSchoolsJSON(rawData, config.province);
     const rawCount = rawData.length;
     
-    // Log detailed stats
     const filtered = rawCount - schools.length;
     if (filtered > 0) {
       console.log(`${config.province}: ${rawCount} raw → ${schools.length} parsed (${filtered} filtered out)`);
@@ -74,10 +71,6 @@ async function loadProvinceData(config: ProvinceConfig): Promise<{ schools: Scho
   }
 }
 
-/**
- * Load all schools data progressively
- * Calls onProgress callback as each province loads
- */
 export async function loadAllSchoolsData(
   onProgress?: (state: SchoolsDataState) => void
 ): Promise<School[]> {
@@ -106,7 +99,6 @@ export async function loadAllSchoolsData(
     console.log(`Loaded ${schools.length} schools from ${config.province}`);
   }
   
-  // Deduplicate
   const uniqueSchools = deduplicateSchools(allSchools);
   const duplicates = allSchools.length - uniqueSchools.length;
   
@@ -130,9 +122,6 @@ export async function loadAllSchoolsData(
   return uniqueSchools;
 }
 
-/**
- * Load all schools data at once (for initial load)
- */
 export async function loadSchoolsDataParallel(): Promise<School[]> {
   const results = await Promise.all(
     PROVINCE_FILES.map(config => loadProvinceData(config))
